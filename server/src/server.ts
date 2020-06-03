@@ -1,19 +1,25 @@
+/* eslint-disable import/first */
 import dotenv from 'dotenv';
 import express from 'express';
+import { resolve } from 'path';
 
 if (process.env.NODE_ENV === 'development') {
   dotenv.config();
 }
 
-// eslint-disable-next-line import/first
 import './database/connection';
-// eslint-disable-next-line import/first
 import routes from './routes';
 
 const app = express();
 
+// Middlewares
+app.use(express.json());
+
+// Settings
 app.set('PORT', process.env.PORT || 3333);
 
+// Routes
+app.use('/uploads', express.static(resolve(__dirname, '..', 'uploads')));
 app.use(routes);
 
 app.listen(app.get('PORT'), () => {

@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "start:dev": "NODE_ENV=development ts-node-dev --respawn --transpileOnly .",
-    "knex:migrate": "knex migrate:latest --knexfile knexfile.ts"
+    "knex:migrate": "knex migrate:latest --knexfile knexfile.ts",
+    "knex:seed": "knex seed:run --knexfile knexfile.ts"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

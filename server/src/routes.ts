@@ -9,6 +9,7 @@ routes.get('/items', async (req, res) => {
     const items = await knex<Item>('items').select('*');
 
     const serializedItems = items.map((item) => ({
+      id: item.id,
       title: item.title,
       image_url: `http://${process.env.HOST}:${process.env.PORT}/uploads/${item.image}`,
     }));

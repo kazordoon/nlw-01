@@ -18,17 +18,19 @@ export default {
 
       const trx = await knex.transaction();
 
+      const point: Point = {
+        name,
+        email,
+        whatsapp,
+        latitude,
+        longitude,
+        city,
+        uf,
+        image: 'fake_image',
+      };
+
       const [pointId] = await trx<Point>('points')
-        .insert({
-          name,
-          email,
-          whatsapp,
-          latitude,
-          longitude,
-          city,
-          uf,
-          image: 'fake_image',
-        }).returning('id');
+        .insert(point).returning('id');
 
       const pointItems = items.map((itemId: number) => ({
         item_id: itemId,
@@ -38,7 +40,10 @@ export default {
       await trx('point_items')
         .insert(pointItems);
 
-      return res.sendStatus(201);
+      return res.status(201).json({
+        id: pointId,
+        ...point,
+      });
     } catch (err) {
       return res.status(400).json({ error: "Couldn't create a new point." });
     }

@@ -23,4 +23,7 @@ module.exports = {
     directory: resolve(__dirname, 'src', 'database', 'migrations'),
     tableName: 'knex_migrations',
   },
+  seeds: {
+    directory: resolve(__dirname, 'src', 'database', 'seeds'),
+  },
 };

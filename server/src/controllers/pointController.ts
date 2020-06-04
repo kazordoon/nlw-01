@@ -3,6 +3,27 @@ import knex from '../database/connection';
 import Point from '../contracts/Point';
 
 export default {
+  async index(req: Request, res: Response) {
+    try {
+      const { city, uf, items } = req.query;
+
+      const parsedItems = String(items)
+        .split(',')
+        .map((item) => Number(item.trim()));
+
+      const points = await knex('points')
+        .select('points.*')
+        .join('point_items', 'points.id', '=', 'point_items.point_id')
+        .whereIn('point_items.item_id', parsedItems)
+        .where('city', '=', String(city))
+        .where('uf', '=', String(uf))
+        .distinct();
+
+      return res.json(points);
+    } catch (err) {
+      return res.status(500).json({ error: "Couldn't list the points." });
+    }
+  },
   async show(req: Request, res: Response) {
     try {
       const { id } = req.params;

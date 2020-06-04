@@ -3,6 +3,29 @@ import knex from '../database/connection';
 import Point from '../contracts/Point';
 
 export default {
+  async show(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const point = await knex('points')
+        .select('*')
+        .where('id', '=', id)
+        .first();
+
+      if (!point) {
+        return res.status(400).json({ error: 'Point not found.' });
+      }
+
+      const items = await knex('items')
+        .select('items.title')
+        .join('point_items', 'items.id', 'point_items.item_id')
+        .where('point_items.point_id', '=', id);
+
+      return res.json({ point, items });
+    } catch (err) {
+      return res.status(400).json({ error: "Couldn't show this point." });
+    }
+  },
   async create(req: Request, res: Response) {
     try {
       const {

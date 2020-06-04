@@ -40,6 +40,8 @@ export default {
       await trx('point_items')
         .insert(pointItems);
 
+      await trx.commit();
+
       return res.status(201).json({
         id: pointId,
         ...point,

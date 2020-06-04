@@ -2,6 +2,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import { resolve } from 'path';
+import cors from 'cors';
 
 if (process.env.NODE_ENV === 'development') {
   dotenv.config();
@@ -14,6 +15,9 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+}));
 
 // Settings
 app.set('PORT', process.env.PORT || 3333);

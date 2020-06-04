@@ -4,6 +4,7 @@ declare global {
       NODE_ENV: string;
       HOST: string;
       PORT: string | number;
+      CORS_ORIGIN: string;
 
       DB_CLIENT: string;
       DB_HOST: string;

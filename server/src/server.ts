@@ -20,13 +20,14 @@ app.use(cors({
 }));
 
 // Settings
+app.set('HOST', process.env.HOST || 'localhost');
 app.set('PORT', process.env.PORT || 3333);
 
 // Routes
 app.use('/uploads', express.static(resolve(__dirname, '..', 'uploads')));
 app.use(routes);
 
-app.listen(app.get('PORT'), () => {
+app.listen(app.get('PORT'), app.get('HOST'), () => {
   // eslint-disable-next-line no-console
-  console.log(`Server running on *:${app.get('PORT')}`);
+  console.log(`Server running on ${app.get('HOST')}:${app.get('PORT')}`);
 });

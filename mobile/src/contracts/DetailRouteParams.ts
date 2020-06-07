@@ -1,4 +1,4 @@
 /* eslint-disable semi */
-export default interface RouteParams {
+export default interface DetailRouteParams {
   pointId: number;
 }

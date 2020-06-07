@@ -11,7 +11,7 @@ import {
 import { Feather as Icon, FontAwesome } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
-import RouteParams from '../../contracts/RouteParams';
+import DetailRouteParams from '../../contracts/DetailRouteParams';
 import API from '../../services/api';
 import PointData from '../../contracts/PointData';
 import * as MailComposer from 'expo-mail-composer';
@@ -19,7 +19,7 @@ import * as MailComposer from 'expo-mail-composer';
 const Detail = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const routeParams = route.params as RouteParams;
+  const routeParams = route.params as DetailRouteParams;
 
   const [data, setData] = useState<PointData>({} as PointData);
 

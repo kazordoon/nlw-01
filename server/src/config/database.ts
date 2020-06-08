@@ -1,3 +1,5 @@
+const { resolve } = require('path');
+
 const dbConfig = {
   client: process.env.DB_CLIENT,
   connection: {
@@ -9,6 +11,13 @@ const dbConfig = {
   pool: {
     min: 2,
     max: 10,
+  },
+  migrations: {
+    directory: resolve(__dirname, '..', 'database', 'migrations'),
+    tableName: 'knex_migrations',
+  },
+  seeds: {
+    directory: resolve(__dirname, '..', 'database', 'seeds'),
   },
 };
 

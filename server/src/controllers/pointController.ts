@@ -19,7 +19,12 @@ export default {
         .where('uf', '=', String(uf))
         .distinct();
 
-      return res.json(points);
+      const serializedPoints = points.map((point) => ({
+        ...points,
+        image_url: `http://${process.env.HOST}:${process.env.PORT}/uploads/${point.image}`,
+      }));
+
+      return res.json(serializedPoints);
     } catch (err) {
       return res.status(500).json({ error: "Couldn't list the points." });
     }
@@ -37,12 +42,17 @@ export default {
         return res.status(400).json({ error: 'Point not found.' });
       }
 
+      const serializedPoint = {
+        ...point,
+        image_url: `http://${process.env.HOST}:${process.env.PORT}/uploads/${point.image}`,
+      };
+
       const items = await knex('items')
         .select('items.title')
         .join('point_items', 'items.id', 'point_items.item_id')
         .where('point_items.point_id', '=', id);
 
-      return res.json({ point, items });
+      return res.json({ point: serializedPoint, items });
     } catch (err) {
       return res.status(400).json({ error: "Couldn't show this point." });
     }
@@ -70,16 +80,19 @@ export default {
         longitude,
         city,
         uf,
-        image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+        image: req.file.filename,
       };
 
       const [pointId] = await trx<Point>('points')
         .insert(point).returning('id');
 
-      const pointItems = items.map((itemId: number) => ({
-        item_id: itemId,
-        point_id: pointId,
-      }));
+      const pointItems = items
+        .split(',')
+        .map((item: string) => Number(item.trim()))
+        .map((itemId: number) => ({
+          item_id: itemId,
+          point_id: pointId,
+        }));
 
       await trx('point_items')
         .insert(pointItems);

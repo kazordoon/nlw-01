@@ -1,6 +1,6 @@
 import knex from 'knex';
 
-import dbConfig from '../../knexfile';
+import dbConfig from '../config/database';
 
 const connection = knex(dbConfig);
 // eslint-disable-next-line no-console

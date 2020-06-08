@@ -6,11 +6,12 @@
   "author": "Felipe Barros <felipetech@tuta.io>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "start:dev": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --respawn --transpileOnly .",
     "knex:migrate": "knex migrate:latest --knexfile knexfile.ts",
     "knex:seed": "knex seed:run --knexfile knexfile.ts",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "build": "tsc"
   },
   "dependencies": {
     "celebrate": "^12.1.1",

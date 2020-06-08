@@ -1,5 +1,6 @@
 {
   "*.ts": [
-    "eslint --fix src/**/**"
+    "eslint --fix src/**/**",
+    "npm test"
   ]
 }

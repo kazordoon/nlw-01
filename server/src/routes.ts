@@ -3,8 +3,8 @@ import {
 } from 'express';
 import multer from 'multer';
 
-import pointController from './controllers/pointController';
-import itemController from './controllers/itemController';
+import pointController from './controllers/PointController';
+import itemController from './controllers/ItemController';
 import multerConfig from './config/multer';
 import validateCreatePoint from './validations/createPoint';
 

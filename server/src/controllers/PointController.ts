@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import knex from '../database/connection';
 import Point from '../contracts/Point';
 
-export default {
-  async index(req: Request, res: Response) {
+class PointController {
+  public async index(req: Request, res: Response) {
     try {
       const { city, uf, items } = req.query;
 
@@ -28,8 +28,9 @@ export default {
     } catch (err) {
       return res.status(500).json({ error: "Couldn't list the points." });
     }
-  },
-  async show(req: Request, res: Response) {
+  }
+
+  public async show(req: Request, res: Response) {
     try {
       const { id } = req.params;
 
@@ -56,8 +57,9 @@ export default {
     } catch (err) {
       return res.status(400).json({ error: "Couldn't show this point." });
     }
-  },
-  async create(req: Request, res: Response) {
+  }
+
+  public async create(req: Request, res: Response) {
     try {
       const {
         name,
@@ -106,5 +108,7 @@ export default {
     } catch (err) {
       return res.status(400).json({ error: "Couldn't create a new point." });
     }
-  },
-};
+  }
+}
+
+export default new PointController();

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import knex from '../database/connection';
 import Item from '../contracts/Item';
 
-export default {
+class ItemController {
   async index(req: Request, res: Response) {
     try {
       const items = await knex<Item>('items').select('*');
@@ -16,5 +16,7 @@ export default {
     } catch (err) {
       return res.status(500).json({ error: "Couldn't list the items." });
     }
-  },
-};
+  }
+}
+
+export default new ItemController();

@@ -10,7 +10,7 @@
     "start:dev": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --respawn --transpileOnly .",
     "knex:migrate": "knex migrate:latest --knexfile knexfile.ts",
     "knex:seed": "knex seed:run --knexfile knexfile.ts",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "celebrate": "^12.1.1",

@@ -5,8 +5,8 @@ export default interface Point {
   image: string;
   email: string;
   whatsapp: string;
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
   city: string;
   uf: string;
 }

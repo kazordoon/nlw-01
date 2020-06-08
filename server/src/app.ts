@@ -1,7 +1,17 @@
+/* eslint-disable import/first */
 import express from 'express';
 import { resolve } from 'path';
 import cors from 'cors';
 import { errors } from 'celebrate';
+import dotenv from 'dotenv';
+
+if (process.env.NODE_ENV === 'development') {
+  dotenv.config();
+} else if (process.env.NODE_ENV === 'test') {
+  dotenv.config({
+    path: resolve(__dirname, '..', '.env.test'),
+  });
+}
 
 import './database/connection';
 import routes from './routes';

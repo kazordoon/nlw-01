@@ -6,6 +6,7 @@ import multer from 'multer';
 import pointController from './controllers/pointController';
 import itemController from './controllers/itemController';
 import multerConfig from './config/multer';
+import validateCreatePoint from './validations/createPoint';
 
 const routes = Router();
 const upload = multer(multerConfig).single('image');
@@ -24,6 +25,6 @@ routes.get('/items', itemController.index);
 
 routes.get('/points', pointController.index);
 routes.get('/points/:id', pointController.show);
-routes.post('/points', interceptUpload, pointController.create);
+routes.post('/points', interceptUpload, validateCreatePoint, pointController.create);
 
 export default routes;

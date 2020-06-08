@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { resolve } from 'path';
 import cors from 'cors';
+import { errors } from 'celebrate';
 
 if (process.env.NODE_ENV === 'development') {
   dotenv.config();
@@ -27,6 +28,9 @@ app.set('PORT', process.env.PORT || 3333);
 // Routes
 app.use('/uploads', express.static(resolve(__dirname, '..', 'uploads')));
 app.use(routes);
+
+// Show validation errors
+app.use(errors());
 
 app.listen(app.get('PORT'), app.get('HOST'), () => {
   // eslint-disable-next-line no-console

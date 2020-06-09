@@ -1,5 +1,5 @@
 /* eslint-disable semi */
-export default interface Point {
+export default interface PointRequestBody {
   name: string;
   email: string;
   whatsapp: string;

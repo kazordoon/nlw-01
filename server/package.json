@@ -8,8 +8,10 @@
   "scripts": {
     "start": "node dist/src/server.js",
     "start:dev": "NODE_ENV=development ts-node-dev --ignore-watch node_modules --respawn --transpileOnly .",
-    "knex:migrate": "knex migrate:latest --knexfile knexfile.ts",
-    "knex:seed": "knex seed:run --knexfile knexfile.ts",
+    "dev:knex:migrate": "NODE_ENV=development knex migrate:latest --knexfile knexfile.ts",
+    "dev:knex:seed": "NODE_ENV=development knex seed:run --knexfile knexfile.ts",
+    "test:knex:migrate": "NODE_ENV=test knex migrate:latest --knexfile knexfile.ts",
+    "test:knex:seed": "NODE_ENV=test knex seed:run --knexfile knexfile.ts",
     "test": "NODE_ENV=test jest --passWithNoTests --detectOpenHandles",
     "build": "tsc"
   },

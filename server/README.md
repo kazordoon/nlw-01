@@ -31,6 +31,10 @@ Para ambiente de produção, você irá configurar as variáveis de ambiente man
 	- NPM: `npm run test:knex:seed`
 	- Yarn: `yarn test:knex:seed`
 
+### Rodando os testes
+- NPM: `npm test`
+- Yarn: `yarn test`
+
 ### Iniciando o servidor
 
 - NPM: `npm run start:dev`

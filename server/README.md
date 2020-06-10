@@ -12,7 +12,8 @@
 
 ### Configurando as variáveis de ambiente
 Copie o arquivo `.env.example` e renomeie a cópia para `.env`. Caso queira fazer uso dos testes, crie uma cópia para `.env.test` também.  
-Em seguida, altere o valor das variáveis nos arquivos `.env` e `.env.test` de acordo com o seu ambiente.
+Em seguida, altere o valor das variáveis nos arquivos `.env` e `.env.test` de acordo com o seu ambiente.  
+Para ambiente de produção, você irá configurar as variáveis de ambiente manualmente de acordo com sua hospedagem.
 
 ### Configurando o banco de dados para desenvolvimento
 - Rode as migrations:
@@ -34,6 +35,10 @@ Em seguida, altere o valor das variáveis nos arquivos `.env` e `.env.test` de a
 
 - NPM: `npm run start:dev`
 - Yarn: `yarn start:dev`
+
+### Construindo aplicação para rodar em produção
+- NPM: `npm run build`
+- Yarn: `yarn build`
 
 ### API Endpoints
 

@@ -14,16 +14,14 @@ describe('Items', () => {
   });
 
   it('should list all the items', async () => {
-    const response = await request(app)
-      .get('/items');
+    const response = await request(app).get('/items');
 
     expect(response.status).toBe(200);
   });
 
   it('should return status code 500 when trying to list all items without the item table', async () => {
     await connection.migrate.rollback();
-    const response = await request(app)
-      .get('/items');
+    const response = await request(app).get('/items');
 
     expect(response.status).toBe(500);
   });

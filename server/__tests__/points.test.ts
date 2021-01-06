@@ -1,5 +1,4 @@
 import request from 'supertest';
-import { resolve } from 'path';
 import querystring from 'querystring';
 
 import app from '../src/app';
@@ -123,8 +122,7 @@ describe('Points', () => {
 
   it('should return status code 400 when no point is found', async () => {
     const invalidPointId: number = Math.floor(Math.random() * 100);
-    const response = await request(app)
-      .get(`/points/${invalidPointId}`);
+    const response = await request(app).get(`/points/${invalidPointId}`);
 
     expect(response.status).toBe(400);
   });
@@ -144,8 +142,7 @@ describe('Points', () => {
 
     const pointId: number = newPoint.body.id;
 
-    const response = await request(app)
-      .get(`/points/${pointId}`);
+    const response = await request(app).get(`/points/${pointId}`);
 
     expect(response.status).toBe(200);
   });
@@ -153,8 +150,7 @@ describe('Points', () => {
   it('should return status code 400 when trying to list a specific point without point table', async () => {
     await connection.migrate.rollback();
 
-    const response = await request(app)
-      .get('/points/1');
+    const response = await request(app).get('/points/1');
 
     expect(response.status).toBe(400);
   });
